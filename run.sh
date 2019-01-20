@@ -60,6 +60,13 @@ set +e
 brew install wget watch git kubernetes-helm git-crypt pwgen jq telnet zsh tmux go dep kubectx fzf unzip
 set -e
 
+#######
+# zsh #
+#######
+if ! grep -q "source \$HOME/.bash_profile" $HOME/.zshrc; then
+	echo "source \$HOME/.bash_profile" >> $HOME/.zshrc
+fi
+
 ##########
 # gcloud #
 ##########
