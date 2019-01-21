@@ -93,5 +93,7 @@ wget -N -P /tmp/ "https://github.com/kubernetes/minikube/releases/download/v$MIN
 mv /tmp/minikube-darwin-amd64 $BINS_DIR/minikube
 chmod +x $BINS_DIR/minikube
 
-curl -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-hyperkit
-sudo install -o root -g wheel -m 4755 docker-machine-driver-hyperkit $BINS_DIR/
+curl -o /tmp/docker-machine-driver-hyperkit -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-hyperkit
+sudo install -o root -g wheel -m 4755 /tmp/docker-machine-driver-hyperkit $BINS_DIR/
+rm /tmp/docker-machine-driver-hyperkit
+
