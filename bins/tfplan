@@ -2,7 +2,11 @@
 
 set -e
 
+additional_flags=$2
 command="terraform plan -out=plan"
+if [[ ! -z $additional_flags ]]; then
+    command="$command $additional_flags"
+fi
 IFS=', ' read -r -a files <<< "$1"
 
 for filename in "${files[@]}"
@@ -11,6 +15,12 @@ do
         if [[ "$line" =~ ^resource ]]; then
             resource_type=$(echo $line | cut -d '"' -f 2)
             resource_name=$(echo $line | cut -d '"' -f 4)
+            command="$command -target=$resource_type.$resource_name"
+        fi
+        if [[ "$line" =~ ^module ]]; then
+            resource_type=$(echo $line | cut -d '"' -f 1)
+            resource_name=$(echo $line | cut -d '"' -f 2)
+            resource_type=${resource_type%?}
             command="$command -target=$resource_type.$resource_name"
         fi
     done < "$filename"
