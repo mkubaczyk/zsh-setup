@@ -23,7 +23,7 @@ export GOPATH=\$HOME/git/go
 ##########
 # gcloud #
 ##########
-if [ -f "\$HOME/bins/google-cloud-sdk/path.zsh.inc" ]; then . "\$HOME/bins/google-cloud-sdk/path.zsh.inc"; fi
+export PATH="$PATH:$HOME/bins/google-cloud-sdk/bin"
 if [ -f "\$HOME/bins/google-cloud-sdk/completion.zsh.inc" ]; then . "\$HOME/bins/google-cloud-sdk/completion.zsh.inc"; fi
 
 ###########
@@ -66,7 +66,7 @@ done
 printf 'y\ny\n' | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 set +e
-brew install wget watch git kubernetes-helm git-crypt pwgen jq telnet zsh tmux go dep kubectx fzf unzip
+brew install wget watch git kubernetes-helm kubernetes-cli git-crypt pwgen jq telnet zsh tmux go dep kubectx fzf unzip
 set -e
 
 #######
