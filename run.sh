@@ -52,6 +52,15 @@ bind C-a send-prefix
 EOF
 
 ########
+# bins #
+########
+files=( tfplan )
+for filename in "${files[@]}"
+do
+    curl -o $HOME/bins/$filename https://raw.githubusercontent.com/mkubaczyk/zsh-setup/master/bins/$filename
+done
+
+########
 # brew #
 ########
 printf 'y\ny\n' | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -84,6 +93,9 @@ wget -N -P /tmp/ "https://releases.hashicorp.com/terraform/0.11.11/terraform_${T
 unzip -o "/tmp/terraform_${TERRAFORM_VERSION}_darwin_amd64.zip" -d $BINS_DIR
 rm -f /tmp/terraform_${TERRAFORM_VERSION}_darwin_amd64.zip
 chmod +x $BINS_DIR/terraform
+set +e
+brew install terraform_landscape
+set -e
 
 ############
 # minikube #
