@@ -7,7 +7,11 @@ command="terraform plan -out=plan"
 if [[ ! -z $additional_flags ]]; then
     command="$command $additional_flags"
 fi
-IFS=', ' read -r -a files <<< "$1"
+if [[ -d $1 ]]; then
+	files=( `ls *.tf` )
+else
+	IFS=', ' read -r -a files <<< "$1"
+fi
 
 for filename in "${files[@]}"
 do
