@@ -76,6 +76,11 @@ if ! grep -q "source \$HOME/.bash_profile" $HOME/.zshrc; then
 	echo "source \$HOME/.bash_profile" >> $HOME/.zshrc
 fi
 
+#############
+# oh my zsh #
+#############
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 ##########
 # gcloud #
 ##########
