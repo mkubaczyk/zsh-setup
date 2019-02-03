@@ -23,7 +23,7 @@ export GOPATH=\$HOME/git/go
 ##########
 # gcloud #
 ##########
-export PATH="$PATH:$HOME/bins/google-cloud-sdk/bin"
+export PATH="\$PATH:\$HOME/bins/google-cloud-sdk/bin"
 if [ -f "\$HOME/bins/google-cloud-sdk/completion.zsh.inc" ]; then . "\$HOME/bins/google-cloud-sdk/completion.zsh.inc"; fi
 
 ###########
