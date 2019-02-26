@@ -44,6 +44,10 @@ sshc() {
     cat $HOME/.ssh/config
 }
 
+alias k=k
+k() {
+    kubectl $@
+}
 EOF
 
 ##############
