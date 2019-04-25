@@ -46,17 +46,13 @@ sshc() {
 
 alias k=k
 k() {
-    kubectl $@
+    kubectl \$@
 }
-EOF
 
-##############
-# .tmux.conf #
-##############
-cat <<EOF > $HOME/.tmux.conf
-set -g prefix C-a
-unbind C-b
-bind C-a send-prefix
+alias b64=b64
+b64() {
+	echo \$1 | base64 --decode
+}
 EOF
 
 ########
@@ -76,7 +72,7 @@ ln -fs $PWD/tfapply /usr/local/bin/tfapply || true
 # brew #
 ########
 printf 'y\ny\n' | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew_upgradable=( wget watch git git-crypt pwgen jq telnet zsh tmux dep kubectx fzf unzip gnu-getopt tree terraform_landscape terraform docker-machine-driver-hyperkit )
+brew_upgradable=( csshx git-flow-avh wrk sops wget watch git git-crypt pwgen jq telnet zsh dep kubectx fzf unzip gnu-getopt tree terraform_landscape terraform docker-machine-driver-hyperkit )
 brew_unupgradable=( kubernetes-helm kubernetes-cli go )
 brew_all=("${brew_upgradable[@]}" "${brew_unupgradable[@]}")
 brew_casks=( minikube google-cloud-sdk )
@@ -90,6 +86,8 @@ sudo chmod u+s /usr/local/opt/docker-machine-driver-hyperkit/bin/docker-machine-
 
 helm init --client-only
 helm plugin install https://github.com/futuresimple/helm-secrets || helm plugin update https://github.com/futuresimple/helm-secrets || true
+helm plugin install https://github.com/databus23/helm-diff --version master || helm plugin update https://github.com/databus23/helm-diff --version master || true
+helm plugin install https://github.com/nouney/helm-gcs --version 0.2.0 || helm plugin update https://github.com/nouney/helm-gcs --version 0.2.0 || true
 
 #############
 # oh my zsh #
